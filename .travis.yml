@@ -1,5 +1,0 @@
-dist: trusty
-language: bash
-script:
-  - echo 'hellow world'
- 
