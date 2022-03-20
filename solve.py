@@ -6,10 +6,13 @@ def solve(a, b, c):
         if not isinstance(i, (int, float)):
             raise TypeError
 
-    if math.isclose(a, 0.0):
+    if math.isclose(a, 0.0, abs_tol=10.e-9):
         raise Exception
 
     D = b**2 - 4*a*c
+
+    if math.isclose(D, 0.0, abs_tol=10.e-9):
+        return [-b / (2 * a)]
 
     if D > 0:
         return [
@@ -18,6 +21,3 @@ def solve(a, b, c):
         ]
     elif D < 0:
         return []
-    else:
-        return [-b/(2*a)]
-
