@@ -5,7 +5,7 @@ def solve(a, b, c):
     eps = 1e-7
 
     for i in [a, b, c]:
-        if not isinstance(i, (int, float)) or i == math.inf:
+        if not isinstance(i, (int, float)) or i in [math.inf, math.nan]:
             raise TypeError
 
     if math.isclose(a, 0.0, abs_tol=eps):
