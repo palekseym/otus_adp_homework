@@ -2,22 +2,24 @@ import math
 
 
 def solve(a, b, c):
+    eps = 1e-7
+
     for i in [a, b, c]:
-        if not isinstance(i, (int, float)):
+        if not isinstance(i, (int, float)) or i == math.inf:
             raise TypeError
 
-    if math.isclose(a, 0.0, abs_tol=10.e-9):
+    if math.isclose(a, 0.0, abs_tol=eps):
         raise Exception
 
     D = b**2 - 4*a*c
 
-    if math.isclose(D, 0.0, abs_tol=10.e-9):
+    if math.isclose(D, 0.0, abs_tol=eps):
         return [-b / (2 * a)]
 
-    if D > 0:
+    if D > eps:
         return [
             (-b+math.sqrt(D))/(2*a),
             (-b-math.sqrt(D))/(2*a)
         ]
-    elif D < 0:
+    elif D < -eps:
         return []
