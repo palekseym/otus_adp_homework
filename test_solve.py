@@ -3,6 +3,7 @@ import unittest
 from solve import solve
 from itertools import permutations
 
+
 class SolveTest(unittest.TestCase):
 
     def test_no_sqrt(self):
@@ -29,7 +30,7 @@ class SolveTest(unittest.TestCase):
     def test_type(self):
         """Тест, который проверяет, что solve не может принимать значения, отличные от чиcел"""
 
-        p = [None, math.inf, 4, 3, '3', 'f']
+        p = [None, math.inf, 4, 3, '3', 'f', math.nan]
 
         for i in permutations(p, 3):
             with self.assertRaises(TypeError):
