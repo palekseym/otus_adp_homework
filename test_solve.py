@@ -1,7 +1,7 @@
 import math
 import unittest
 from solve import solve
-
+from itertools import permutations
 
 class SolveTest(unittest.TestCase):
 
@@ -28,14 +28,13 @@ class SolveTest(unittest.TestCase):
 
     def test_type(self):
         """Тест, который проверяет, что solve не может принимать значения, отличные от чиcел"""
-        with self.assertRaises(TypeError):
-            solve('a', 0, 3)
 
-        with self.assertRaises(TypeError):
-            solve('a', 0x31, None)
+        p = [None, math.inf, 4, 3, '3', 'f']
 
-        with self.assertRaises(TypeError):
-            solve(7, 8, math.inf)
+        for i in permutations(p, 3):
+            with self.assertRaises(TypeError):
+                solve(i[0], i[1], i[2])
+
 
 if __name__ == '__main__':
     unittest.main()
