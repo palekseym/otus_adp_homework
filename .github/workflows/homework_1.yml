@@ -1,4 +1,4 @@
-name: Unit tests
+name: Homework_1
 
 on:
   push:
@@ -9,11 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  testing:
+  'UnitTest':
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-
       - name: Run unit tests
         run: |
-          python test_solve.py
+          python homework_1/test_solve.py
