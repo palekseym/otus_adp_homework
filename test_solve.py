@@ -1,5 +1,7 @@
+import math
 import unittest
 from solve import solve
+from itertools import permutations
 
 
 class SolveTest(unittest.TestCase):
@@ -16,7 +18,7 @@ class SolveTest(unittest.TestCase):
         """Тест, который проверяет, что для уравнения есть один корень.
         если дискриминант ровно равен 0, и если дискриминант не ноль, но меньше заданного epsilon"""
         self.assertEqual([-1], solve(1, 2, 1))
-        self.assertEqual([-1], solve(1, 2, 1.000000001))
+        self.assertEqual([-1], solve(1, 2, 1.00000001))
 
     def test_a_no_equal_zero(self):
         """Тест, который проверяет, что коэффициент a не может быть равен 0
@@ -27,11 +29,12 @@ class SolveTest(unittest.TestCase):
 
     def test_type(self):
         """Тест, который проверяет, что solve не может принимать значения, отличные от чиcел"""
-        with self.assertRaises(TypeError):
-            solve('a', 0, 3)
 
-        with self.assertRaises(TypeError):
-            solve('a', 0x31, None)
+        p = [None, math.inf, 4, 3, '3', 'f', math.nan]
+
+        for i in permutations(p, 3):
+            with self.assertRaises(TypeError):
+                solve(i[0], i[1], i[2])
 
 
 if __name__ == '__main__':
